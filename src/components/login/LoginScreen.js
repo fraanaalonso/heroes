@@ -7,14 +7,16 @@ export const LoginScreen = ({history}) => {
     const { dispatch } = useContext(AuthContext)
 
     const handleClick = () => {
-        //history.replace('/'); //cant go back. We avoid seeing the login page while logged in
-        history.replace('/');
+
+        const lastPath = localStorage.getItem('lastPath') || '/';     
         dispatch({
             type: types.login,
             payload: {
                 name: 'Francisco'
             }
-        })
+        });
+
+        history.replace(lastPath);
     }
     return (
         <div className="container mt-5">
